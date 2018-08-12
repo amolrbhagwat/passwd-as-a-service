@@ -44,13 +44,13 @@ async function getGroupsMatching (options) {
     let data = await readGroupsFile();
     let processedData = parseGroups(data);
     return processedData.filter(group => {        
-        if(name && group.name !== name) {
+        if(typeof name !== 'undefined' && group.name !== name) {
             return false;
         }
-        if(gid && group.gid !== gid) {
+        if(typeof gid !== 'undefined' && group.gid !== gid) {
             return false;
         }
-        if(members && !members.every(member => group.members.includes(member))){
+        if(typeof members !== 'undefined' && !members.every(member => group.members.includes(member))){
             return false;
         }            
         return true;
