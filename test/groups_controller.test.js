@@ -8,14 +8,14 @@ describe('Groups Controller', function() {
         var expectedData = [
             {"name": "root",   "gid": 0, "members": []},
             {"name": "daemon", "gid": 1, "members": []},
-            {"name": "bin",    "gid": 2, "members": []},
-            {"name": "sys",    "gid": 3, "members": []},
+            {"name": "bin",    "gid": 2, "members": ['bin']},
+            {"name": "sys",    "gid": 3, "members": ['sys']},
             {"name": "adm",    "gid": 4, "members": ['foo', 'bar']},
             {"name": "tty",    "gid": 5, "members": []},
             {"name": "disk",   "gid": 6, "members": []},
             {"name": "lp",     "gid": 7, "members": []},
             {"name": "mail",   "gid": 8, "members": []},
-            {"name": "news",   "gid": 9, "members": ['foo']}
+            {"name": "news",   "gid": 9, "members": ['foo', 'bin']}
         ];
 
         var actualData = await groupsController.getAllGroups();
@@ -39,7 +39,7 @@ describe('Groups Controller', function() {
         assert.deepEqual(actualData, expectedData);
 
         var options2 = {gid: 9};
-        var expectedData2 = [{name: 'news', 'gid': 9, members: ['foo']}];
+        var expectedData2 = [{name: 'news', 'gid': 9, members: ['foo', 'bin']}];
         var actualData2 = await groupsController.getGroupsMatching(options2);
         assert.deepEqual(actualData2, expectedData2);
 
@@ -50,7 +50,7 @@ describe('Groups Controller', function() {
 
         var options4 = {members: ['foo']};
         var expectedData4 = [{name: 'adm',  'gid': 4, members: ['foo', 'bar']},
-                             {name: 'news', 'gid': 9, members: ['foo']}];
+                             {name: 'news', 'gid': 9, members: ['foo', 'bin']}];
         var actualData4 = await groupsController.getGroupsMatching(options4);
         assert.deepEqual(actualData4, expectedData4);
 
