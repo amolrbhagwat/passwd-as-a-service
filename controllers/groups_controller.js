@@ -28,20 +28,35 @@ function parseGroups(groupRecords) {
 }
 
 async function getAllGroups() {
-    let data = await readGroupsFile();
+    let data = {};
+    try {
+        data = await readGroupsFile();
+    } catch (error) {
+        throw error;
+    }
     let processedData = parseGroups(data);
     return processedData;
 }
 
 async function getGroupById(gid) {
-    let data = await readGroupsFile();
+    let data = {};
+    try {
+        data = await readGroupsFile();
+    } catch (error) {
+        throw error;
+    }
     return parseGroups(data).find(group => group.gid === gid);
 }
 
 async function getGroupsMatching (options) {
     let {name, gid, members} = {name: options.name, gid: options.gid, members: options.members};
 
-    let data = await readGroupsFile();
+    let data = {};
+    try {
+        data = await readGroupsFile();
+    } catch (error) {
+        throw error;
+    }
     let processedData = parseGroups(data);
     return processedData.filter(group => {        
         if(typeof name !== 'undefined' && group.name !== name) {
