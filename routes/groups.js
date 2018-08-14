@@ -25,7 +25,6 @@ router.get('/query', async function(req, res) {
             } else{
                 options.name = name;
             }
-            options.name = name;
         }
         if((typeof gid !== 'undefined') && isNaN(gid)) {
             res.status(400).send('Please check your request.');
