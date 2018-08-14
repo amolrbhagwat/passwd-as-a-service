@@ -33,13 +33,23 @@ function parseUsers(userRecords) {
 }
 
 async function getAllUsers() {
-    let data = await readUsersFile();
+    let data = {};
+    try {
+        data = await readUsersFile();
+    } catch (error) {
+        throw error;
+    }
     let processedData = parseUsers(data);
     return processedData;
 }
 
 async function getUserById(uid) {
-    let data = await readUsersFile();
+    let data = {};
+    try {
+        data = await readUsersFile();
+    } catch (error) {
+        throw error;
+    }
     return parseUsers(data).find(user => user.uid === uid);
 }
 
@@ -47,7 +57,12 @@ async function getUsersMatching (options) {
     let {name, uid, gid, comment, home, shell} = {name: options.name, uid: options.uid, gid: options.gid,
         comment: options.comment, home: options.home, shell: options.shell};
 
-    let data = await readUsersFile();
+    let data = {};
+    try {
+        data = await readUsersFile();
+    } catch (error) {
+        throw error;
+    }
     let processedData = parseUsers(data);
     return processedData.filter(user => {
         if(typeof name !== 'undefined' && user.name !== name) {
