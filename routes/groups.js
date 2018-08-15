@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var log = require('simple-node-logger').createSimpleLogger();
 
 var groupsController = require('../controllers/groups_controller');
 
@@ -8,6 +9,7 @@ router.get('/', async function(req, res) {
         var allGroups = await groupsController.getAllGroups();
         res.json(allGroups);
     } catch (error) {
+        log.error(error);
         res.status(500).send('An internal server error occurred.');
     }
 });
@@ -47,6 +49,7 @@ router.get('/query', async function(req, res) {
         }
         res.json(results);
     } catch (error) {
+        log.error(error);
         res.status(500).send('An internal server error occurred.');
     }
 });
@@ -65,6 +68,7 @@ router.get('/:gid', async function(req, res) {
         }
         res.json(group);
     } catch (error) {
+        log.error(error);
         res.status(500).send('An internal server error occurred.');
     }
 });
