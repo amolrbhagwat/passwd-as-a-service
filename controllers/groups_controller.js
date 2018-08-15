@@ -3,6 +3,8 @@ var fs = require('fs');
 
 var fileName = config.get('groups.filePath');
 
+const NO_OF_COLONS_IN_A_GROUP_RECORD = 3;
+
 function readGroupsFile () {
     return new Promise((resolve, reject) => {
         fs.readFile(fileName, 'ascii', (err, data) => {
@@ -15,7 +17,7 @@ function readGroupsFile () {
 function parseGroups(groupRecords) {
     return groupRecords.split('\n')
         .filter((groupRecord) => {
-            return groupRecord.length;
+            return (groupRecord.split(":").length - 1 === NO_OF_COLONS_IN_A_GROUP_RECORD);
         })
         .map((groupRecord) => {
             var fields = groupRecord.split(':');

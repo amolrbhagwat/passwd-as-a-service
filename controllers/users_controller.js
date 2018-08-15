@@ -4,6 +4,7 @@ var fs = require('fs');
 var groupsController = require('./groups_controller');
 
 var fileName = config.get('users.filePath');
+const NO_OF_COLONS_IN_A_USER_RECORD = 6;
 
 function readUsersFile () {
     return new Promise((resolve, reject) => {
@@ -17,7 +18,7 @@ function readUsersFile () {
 function parseUsers(userRecords) {
     return userRecords.split('\n')
         .filter((userRecord) => {
-            return userRecord.length;
+            return (userRecord.split(":").length - 1 === NO_OF_COLONS_IN_A_USER_RECORD);
         })
         .map((userRecord) => {
             var fields = userRecord.split(':');
