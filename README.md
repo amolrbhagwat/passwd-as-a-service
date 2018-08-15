@@ -18,12 +18,12 @@ This is a minimal API service which exposes user and group information on a UNIX
 
 ## Endpoints
 
-####1 . GET /users
+#### - GET /users
 
 - Returns an array of all the users present on the system.
 - Fields returned: name, uid, gid, comment, home, shell.
 
-####2. GET /users/query?[name=\<nq>][&uid=\<uq>][&gid=\<gq>][&comment=\<cq>][&home=\<hq>][&shell=\<sq>]
+#### - GET /users/query?[name=\<nq>][&uid=\<uq>][&gid=\<gq>][&comment=\<cq>][&home=\<hq>][&shell=\<sq>]
 
 - Any combination of the query fields may be provided, returns all users whose fields match _EVERY_ one of the query fields provided.
 - If any field is repeated, only the first value will be used. Invalid fields are ignored.
@@ -31,24 +31,24 @@ This is a minimal API service which exposes user and group information on a UNIX
 - Fields returned: name, uid, gid, comment, home, shell.
 - Returns a 404 if no matches were found.
 
-####3. GET /users/\<uid>
+#### - GET /users/\<uid>
 
 - Returns a single user with the \<uid>.
 - Returns a 404 if a user is not found.
 - Fields returned: name, uid, gid, comment, home, shell.
 
-####4. GET /users/\<uid>/groups
+#### - GET /users/\<uid>/groups
 
 - Returns all the groups for a given user.
 - Returns a 404 if the user was not found on the system, returns with 200 and array of groups if the user is present.
 - Fields returned: name, gid, members.
 
-####5. GET /groups
+#### - GET /groups
 
 - Returns an array with all the groups present on the system.
 - Fields returned: name, gid, members.
 
-####6. GET /groups/query?[name=\<nq>][&gid=<gq>][&member=\<mq1>][&member=\<mq2>][...]
+#### - GET /groups/query?[name=\<nq>][&gid=<gq>][&member=\<mq1>][&member=\<mq2>][...]
 
 - Any combination of the query fields may be provided, returns all groups whose fields match _EVERY_ one of the query fields provided.
 - If any field is repeated, only the first value will be used, except for 'member'. Invalid fields are ignored.
@@ -56,7 +56,7 @@ This is a minimal API service which exposes user and group information on a UNIX
 - Fields returned: name, gid, members.
 - Returns a 404 if no matches were found.
 
-####7. GET /groups/\<gid>
+#### - GET /groups/\<gid>
 
 - Returns a single group with the \<gid>.
 - Returns a 404 if the group is not found.
