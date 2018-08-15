@@ -1,0 +1,9 @@
+{
+    "groups": {
+      "filePath": "/etc/group"
+    },
+    "users": {
+      "filePath": "/etc/passwd"
+    }
+}
+  
